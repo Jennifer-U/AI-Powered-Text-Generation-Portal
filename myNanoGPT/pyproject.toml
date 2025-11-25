@@ -1,21 +1,15 @@
 [project]
-name = "ai-powered-text-generation-portal"
+name = "mynanogpt"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "datasets>=4.4.1",
-    "flask>=3.1.2",
     "numpy>=2.3.5",
     "tiktoken>=0.12.0",
     "torch>=2.9.1",
     "tqdm>=4.67.1",
     "transformers>=4.57.1",
     "wandb>=0.23.0",
-]
-
-[tool.uv.workspace]
-members = [
-    "myNanoGPT",
 ]

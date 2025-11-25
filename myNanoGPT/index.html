@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>myNanoGPT Text Demo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: #0f1968;
+  padding: 2px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 20%;
+  height: 400px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 35px;
+  width: 15%;
+  background-color: #f1f1f1;
+  
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Fix for the generated text box */
+#output {
+  white-space: pre-wrap;     /* allows wrapping */
+  word-wrap: break-word;     /* breaks long tokens */
+  overflow-wrap: break-word; /* modern wrap control */
+  background: #ddd;          /* grey background if you want */
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 100%;           /* prevents horizontal overflow */
+  overflow: auto;            /* scrollbars only if necessary */
+}
+
+/* Remove forced height from article so it grows naturally */
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  /* height: 300px; REMOVE THIS */
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h2>myNanoGPT Text Generator</h2>
+</header>
+
+<section>
+  <!--<button id="generateButton">Generate Text</button> -->
+  <button id="generateButton" style="padding: 15px 30px; font-size: 20px;">Generate Text</button>
+
+    
+  <article>
+    <h1>Random Text Generated from Cleaned Data</h1>
+    <pre id="output"></pre>
+    <script>
+        document.getElementById('generateButton').onclick = async function() {
+            const response = await fetch('/generate');
+            const data = await response.json();
+            document.getElementById('output').textContent = data.output;
+        };
+    </script>
+  </article>
+</section>
+
+<footer>
+  <p>This application is a locally hosted text-generation system trained on a custom real-world dataset.</p>
+  
+  <p>Project highlights:</p>
+  <p>
+    • Cleaned and standardized the <code>corrupt_movie_corpus.txt</code> dataset, removing HTML artifacts, URLs, excessive punctuation, and other noise.<br>
+    • Adapted Andrej Karpathy’s <code>nanoGPT</code> framework to train a GPT model on the refined movie-corpus dataset.<br>
+    • Developed a Flask-based web interface for interacting with the trained model.
+  </p>
+</footer>
+
+
+</body>
+</html>
+
+<!-- OTHER MORE SIMPLE OPTION BELOW-->
+<!-- 
+<DOCТУРЕ html>
+<html>
+<head>
+    <title>myNanoGPT Text Demo</title>
+</head>
+<body>
+    <h1 style="text-align:center; color: white; background: black;">myNanoGPT Text Generator</h1>
+    <button id="generateButton">Generate Text</button>
+    <pre id="output"></pre>
+    <script>
+        document.getElementById('generateButton').onclick = async function() {
+            const response = await fetch('/generate');
+            const data = await response.json();
+            document.getElementById('output').textContent = data.output;
+        };
+    </script>
+</body>
+</html>
+-->
+
