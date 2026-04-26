@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, send_from_directory 
 import subprocess
 import random
+import os
 
 app = Flask(__name__)
 
@@ -25,4 +26,5 @@ def generate_text ():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    debug_mode = os.getenv("FLASK_DEBUG", "False") == "True"
+    app.run(host='127.0.0.1', port=5000, debug=debug_mode)
